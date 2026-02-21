@@ -12,6 +12,12 @@
     <BepInExDir>$(AppData)\Thunderstore Mod Manager\DataFolder\Valheim\profiles\solo\BepInEx\core</BepInExDir>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="publicized_assemblies\**" />
+    <EmbeddedResource Remove="publicized_assemblies\**" />
+    <None Remove="publicized_assemblies\**" />
+  </ItemGroup>
+
 	<ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>$(BepInExDir)\0Harmony.dll</HintPath>

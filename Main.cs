@@ -87,7 +87,7 @@ namespace favoriteItems
 
         private void getHoveredItem()
         {
-            if (InventoryGui.instance != null)
+            if (InventoryGui.instance == null)
             {
                 Main.logger.LogDebug("inventory is null");
                 return; 
