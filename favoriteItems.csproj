@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>favoriteItems</AssemblyName>
+    <Description>favoriteItems Mod</Description>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    
+    <ValheimDir>A:\SteamLibrary\steamapps\common\Valheim</ValheimDir>
+    <BepInExDir>$(AppData)\Thunderstore Mod Manager\DataFolder\Valheim\profiles\solo\BepInEx\core</BepInExDir>
+  </PropertyGroup>
+
+	<ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExDir)\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExDir)\BepInEx.dll</HintPath>
+    </Reference>
+
+    <Reference Include="assembly_valheim">
+      <HintPath>publicized_assemblies\assembly_valheim_publicized.dll</HintPath>
+    </Reference>
+	<Reference Include="assembly_utils">
+		<HintPath>$(ValheimDir)\valheim_Data\Managed\assembly_utils.dll</HintPath>
+	</Reference>	
+
+		<Reference Include="UnityEngine">
+      <HintPath>$(ValheimDir)\valheim_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ValheimDir)\valheim_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(ValheimDir)\valheim_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(ValheimDir)\valheim_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+	<Reference Include="Unity.TextMeshPro">
+		<HintPath>$(ValheimDir)\valheim_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEngine.InputLegacyModule">
+		<HintPath>$(ValheimDir)\valheim_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+
+</Project>
