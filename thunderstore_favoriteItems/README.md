@@ -8,9 +8,9 @@ Toggle favorite with a press of a key, by default the key is **LeftAlt** but can
 
 ## Images
 
-<img src="assets/inventorySS.png" alt="" width="ao" height="300" style="display: block; margin: 0 auto;">
+<img src="https://github.com/ZTem19/favoriteItems/blob/master/thunderstore_favoriteItems/assets/inventorySS.png" alt="" width="ao" height="300" style="display: block; margin: 0 auto;">
 <br>
-<img src="assets/azuExtendedSS.png" alt="" width="" height="400" style="display: block; margin: 0 auto;">
+<img src="https://github.com/ZTem19/favoriteItems/blob/master/thunderstore_favoriteItems/assets/azuExtendedSS.png" alt="" width="" height="400" style="display: block; margin: 0 auto;">
 <hr>
 
 ## Mod Compatability
