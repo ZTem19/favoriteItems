@@ -21,8 +21,8 @@ namespace favoriteItems
     public class Main : BaseUnityPlugin
     {
         // BepIn Setup
-        const string pluginGUID = "com.grizzyggs.favoriteItems";
-        const string pluginName = "favorite Items";
+        const string pluginGUID = "com.grizzyggs.FavoriteItems";
+        const string pluginName = "Favorite Items";
         const string pluginVersion = "0.1.1";
 
         private readonly Harmony HarmonyInstance = new Harmony(pluginGUID);
