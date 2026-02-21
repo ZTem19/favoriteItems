@@ -1,6 +1,6 @@
 {
   "name": "Favorite_Items",
-  "version_number": "0.1.3",
+  "version_number": "0.1.4",
   "description": "Favorite items from quick stacking.",
   "website_url": "https://github.com/ZTem19/favoriteItems",
   "dependencies": ["denikson-BepInExPack_Valheim-5.4.2333"]

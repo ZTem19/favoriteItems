@@ -1,3 +1,7 @@
+### Version 0.1.4
+
+Updated Readme to add images and links
+
 ### Version 0.1.3
 
 Fixed bug with rendering star.
