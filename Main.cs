@@ -101,11 +101,19 @@ namespace favoriteItems
             }
 
             InventoryGrid.Element hoveredElement = playerGrid.GetHoveredElement();
-            if (hoveredElement != null)
+            if (hoveredElement != null && playerGrid.m_inventory != null)
             {
                 ItemDrop.ItemData hoveredItem = playerGrid.m_inventory.GetItemAt(hoveredElement.m_pos.x, hoveredElement.m_pos.y);
                 Main.CurrentHoveredItem = hoveredItem;
-                Main.logger.LogDebug($"hovereditem: {hoveredItem.m_shared.m_name}");
+                if(hoveredItem != null)
+                {
+                    Main.logger.LogDebug($"hoveredelement item: {hoveredItem.m_shared.m_name}");
+                }
+                else
+                {
+                    Main.logger.LogDebug("hoveredelement has no item");
+                }
+
             }
             else
             {
@@ -169,14 +177,16 @@ namespace favoriteItems
         {
             public static void Postfix(InventoryGrid __instance, Player player, ItemDrop.ItemData dragItem)
             {
+                if (__instance == null || __instance.m_inventory == null) return;
+
                 foreach (var element in __instance.m_elements)
                 {
-                    if (!element.m_used) continue;
+                    if (element == null || !element.m_used) continue;
 
-                    var item = __instance.m_inventory.GetItemAt(element.m_pos.x, element.m_pos.y);
-                    bool isFavorite = item != null && item.m_customData.ContainsKey(Main.FavoriteKey);
+                    ItemDrop.ItemData item = __instance.m_inventory.GetItemAt(element.m_pos.x, element.m_pos.y);
 
-                    // Find existing text or create it
+                    bool isFavorite = item?.m_customData?.ContainsKey(Main.FavoriteKey) == true;
+
                     Transform textTransform = element.m_go.transform.Find("FavoriteText");
 
                     if (isFavorite)
@@ -188,6 +198,7 @@ namespace favoriteItems
                             go.transform.SetParent(element.m_go.transform, false);
 
                             favText = go.AddComponent<TextMeshProUGUI>();
+                            favText.raycastTarget = false; // So it doesn't block mouse interactions
 
                             // FIXED: Direct assignment works if favText is TextMeshProUGUI
                             if (element.m_amount != null)
@@ -211,6 +222,7 @@ namespace favoriteItems
                         {
                             favText = textTransform.GetComponent<TextMeshProUGUI>();
                             textTransform.gameObject.SetActive(true);
+                            favText.raycastTarget = false;
                         }
 
                         favText.text = "★";
