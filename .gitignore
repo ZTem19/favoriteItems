@@ -5,6 +5,7 @@
 
 # Custom
 publicized_assemblies/
+*.zip
 
 # User-specific files
 *.rsuser
