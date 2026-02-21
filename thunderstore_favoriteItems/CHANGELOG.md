@@ -1,6 +1,6 @@
-### Version 0.1.1
+### Version 0.1.3
 
-Fixed bug with rendering text.
+Fixed bug with rendering star.
 
 ### Version 0.1.2
 
