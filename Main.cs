@@ -10,9 +10,9 @@ using UnityEngine.UI;
 using BepInEx.Logging;
 using System.Reflection;
 using System.Collections;
-using System.Drawing;
 using TMPro;
 using BepInEx.Configuration;
+using System.Diagnostics;
 
 
 namespace favoriteItems
@@ -181,13 +181,21 @@ namespace favoriteItems
 
                 foreach (var element in __instance.m_elements)
                 {
-                    if (element == null || !element.m_used) continue;
+                    if (element?.m_go == null) continue;
+
+                    Transform textTransform = element.m_go.transform.Find("FavoriteText");
+
+                    // If the slot is inactive in the pool, force hide our custom UI and skip
+                    if (!element.m_used)
+                    {
+                        textTransform?.gameObject.SetActive(false);
+                        continue;
+                    }
+
 
                     ItemDrop.ItemData item = __instance.m_inventory.GetItemAt(element.m_pos.x, element.m_pos.y);
 
                     bool isFavorite = item?.m_customData?.ContainsKey(Main.FavoriteKey) == true;
-
-                    Transform textTransform = element.m_go.transform.Find("FavoriteText");
 
                     if (isFavorite)
                     {
@@ -226,6 +234,10 @@ namespace favoriteItems
                         }
 
                         favText.text = "★";
+
+                        // Debug border for your injected text element (Red)
+
+                        AddDebugOverlay(textTransform, new Color(1, 0, 0, 0.4f));
                     }
                     else if (textTransform != null)
                     {
@@ -234,6 +246,27 @@ namespace favoriteItems
                     }
                 }
             }
+        }
+
+        [Conditional("DEBUG")]
+        private static void AddDebugOverlay(Transform parent, Color color)
+        {
+            if (parent.Find("DebugBorder") != null) return;
+
+            GameObject borderGo = new GameObject("DebugBorder");
+            borderGo.transform.SetParent(parent, false);
+
+            // Stretch to fill parent RectTransform
+            RectTransform rt = borderGo.AddComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.sizeDelta = Vector2.zero;
+            rt.anchoredPosition = Vector2.zero;
+
+            // Add semi-transparent color block
+            Image img = borderGo.AddComponent<Image>();
+            img.color = color;
+            img.raycastTarget = false; // Prevents interference with clicking the item
         }
     }
 }
